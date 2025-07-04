@@ -1,0 +1,160 @@
+
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Button } from '@/components/ui/button';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const ProjectsSection = () => {
+  const [activeTab, setActiveTab] = useState('all');
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
+
+  const tabs = [
+    { id: 'all', label: 'All Projects' },
+    { id: 'commercials', label: 'TV Commercials' },
+    { id: 'youtube', label: 'YouTube' },
+    { id: 'reels', label: 'Reels' },
+    { id: 'corporate', label: 'Corporate' }
+  ];
+
+  const projects = [
+    {
+      id: 1,
+      title: "Nike Brand Commercial",
+      category: "commercials",
+      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=400&fit=crop",
+      description: "High-energy commercial showcasing athletic performance"
+    },
+    {
+      id: 2,
+      title: "Tech Product Launch",
+      category: "youtube",
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=400&fit=crop",
+      description: "Product demonstration and feature highlights"
+    },
+    {
+      id: 3,
+      title: "Instagram Fitness Reel",
+      category: "reels",
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
+      description: "Short-form content for social media engagement"
+    },
+    {
+      id: 4,
+      title: "Corporate Training Video",
+      category: "corporate",
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop",
+      description: "Professional training content for enterprise"
+    },
+    {
+      id: 5,
+      title: "Food Brand Commercial",
+      category: "commercials",
+      image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=400&fit=crop",
+      description: "Appetizing food photography and motion graphics"
+    },
+    {
+      id: 6,
+      title: "Gaming Channel Intro",
+      category: "youtube",
+      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=400&fit=crop",
+      description: "Dynamic intro sequence with motion graphics"
+    }
+  ];
+
+  const filteredProjects = activeTab === 'all' 
+    ? projects 
+    : projects.filter(project => project.category === activeTab);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate project cards when filter changes
+      gsap.fromTo(
+        projectsRef.current?.children || [],
+        { opacity: 0, y: 50, scale: 0.9 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out"
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [activeTab]);
+
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+  };
+
+  return (
+    <section ref={sectionRef} className="py-20 bg-dark-800">
+      <div className="container mx-auto px-6">
+        <h2 className="text-4xl lg:text-5xl font-playfair font-bold text-center mb-4">
+          Featured <span className="gradient-text">Projects</span>
+        </h2>
+        <p className="text-xl text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+          A showcase of my recent work across different platforms and industries
+        </p>
+
+        {/* Filter Tabs */}
+        <div ref={tabsRef} className="flex flex-wrap justify-center gap-4 mb-12">
+          {tabs.map((tab) => (
+            <Button
+              key={tab.id}
+              onClick={() => handleTabChange(tab.id)}
+              variant={activeTab === tab.id ? "default" : "outline"}
+              className={`px-6 py-3 rounded-full transition-all duration-300 ${
+                activeTab === tab.id
+                  ? 'bg-neon-blue text-dark-900 neon-glow'
+                  : 'border-dark-600 text-gray-400 hover:border-neon-blue hover:text-neon-blue'
+              }`}
+            >
+              {tab.label}
+            </Button>
+          ))}
+        </div>
+
+        {/* Projects Grid */}
+        <div ref={projectsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project) => (
+            <div
+              key={project.id}
+              className="group bg-dark-700 rounded-2xl overflow-hidden border border-dark-600 hover:border-neon-blue/50 transition-all duration-300 cursor-pointer"
+            >
+              <div className="relative overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300"></div>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Button className="bg-neon-blue/90 hover:bg-neon-blue text-dark-900 font-semibold">
+                    Watch Project
+                  </Button>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-neon-blue transition-colors duration-300">
+                  {project.title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ProjectsSection;
