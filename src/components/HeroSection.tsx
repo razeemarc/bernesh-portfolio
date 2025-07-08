@@ -1,133 +1,250 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { TextPlugin } from 'gsap/TextPlugin';
 import { Button } from '@/components/ui/button';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Play } from 'lucide-react';
+
+gsap.registerPlugin(TextPlugin);
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero text animation
+      // Advanced typing animation for title
       gsap.fromTo(
-        textRef.current?.children || [],
-        { opacity: 0, y: 50 },
+        titleRef.current,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 0.5,
+          delay: 0.5,
+          onComplete: () => {
+            gsap.to(titleRef.current, {
+              duration: 2,
+              text: {
+                value: "Hi, I'm Alex",
+                delimiter: ""
+              },
+              ease: "none"
+            });
+          }
+        }
+      );
+
+      // Subtitle animation with stagger
+      gsap.fromTo(
+        subtitleRef.current,
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
           duration: 1,
-          stagger: 0.2,
-          ease: "power3.out",
-          delay: 0.5
+          delay: 2.5,
+          ease: "power3.out"
         }
       );
 
-      // Image animation
+      // Professional text content animation
+      gsap.fromTo(
+        textRef.current?.children || [],
+        { opacity: 0, y: 50, rotationX: 15 },
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 1.2,
+          stagger: 0.2,
+          ease: "power3.out",
+          delay: 3
+        }
+      );
+
+      // Advanced image entrance with 3D effect
       gsap.fromTo(
         imageRef.current,
-        { opacity: 0, x: 100, scale: 0.9 },
+        { 
+          opacity: 0, 
+          x: 200, 
+          scale: 0.8,
+          rotationY: 45,
+          transformPerspective: 1000
+        },
         {
           opacity: 1,
           x: 0,
           scale: 1,
-          duration: 1.2,
+          rotationY: 0,
+          duration: 1.5,
           ease: "power3.out",
-          delay: 0.8
+          delay: 1
         }
       );
 
-      // Floating particles animation
+      // Enhanced floating particles with physics
       const particles = particlesRef.current?.children;
       if (particles) {
         Array.from(particles).forEach((particle, index) => {
+          gsap.set(particle, {
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            scale: Math.random() * 0.5 + 0.5,
+            opacity: Math.random() * 0.5 + 0.2
+          });
+
           gsap.to(particle, {
-            y: "random(-20, 20)",
-            x: "random(-20, 20)",
-            duration: "random(2, 4)",
+            y: `random(-30, 30)`,
+            x: `random(-30, 30)`,
+            duration: `random(3, 6)`,
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
             delay: index * 0.1
           });
+
+          // Pulsing effect
+          gsap.to(particle, {
+            scale: `random(0.5, 1.2)`,
+            opacity: `random(0.2, 0.8)`,
+            duration: `random(2, 4)`,
+            repeat: -1,
+            yoyo: true,
+            ease: "power2.inOut",
+            delay: index * 0.2
+          });
         });
       }
+
+      // Continuous background animation
+      gsap.to(heroRef.current, {
+        backgroundPosition: "200% 0%",
+        duration: 20,
+        repeat: -1,
+        ease: "none"
+      });
+
     }, heroRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={heroRef} className="min-h-screen bg-dark-900 relative overflow-hidden flex items-center">
-      {/* Animated Background Particles */}
+    <section 
+      ref={heroRef} 
+      className="min-h-screen professional-gradient relative overflow-hidden flex items-center"
+    >
+      {/* Enhanced Animated Background Particles */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
-        {Array.from({ length: 20 }).map((_, i) => (
+        {Array.from({ length: 50 }).map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-neon-blue/30 rounded-full"
+            className={`absolute rounded-full ${
+              i % 3 === 0 ? 'bg-primary/30' : 
+              i % 3 === 1 ? 'bg-neon-magenta/20' : 'bg-neon-purple/25'
+            }`}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: Math.random() * 6 + 2 + 'px',
+              height: Math.random() * 6 + 2 + 'px',
             }}
           />
         ))}
       </div>
 
-      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-        {/* Text Content */}
-        <div ref={textRef} className="space-y-6">
-          <div className="space-y-4">
-            <h1 className="text-5xl lg:text-7xl font-playfair font-bold leading-tight">
-              Hi, I'm{' '}
-              <span className="gradient-text">Alex</span>
+      {/* Geometric shapes overlay */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-20 w-32 h-32 border border-primary/20 rotate-45"></div>
+        <div className="absolute bottom-20 right-20 w-24 h-24 border border-neon-magenta/20 rotate-12"></div>
+        <div className="absolute top-1/2 left-10 w-16 h-16 bg-neon-purple/10 rounded-full blur-sm"></div>
+      </div>
+
+      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+        {/* Enhanced Text Content */}
+        <div ref={textRef} className="space-y-8">
+          <div className="space-y-6">
+            <h1 
+              ref={titleRef}
+              className="text-6xl lg:text-8xl font-playfair font-bold leading-tight text-shadow"
+            >
+              {/* Text will be animated via GSAP */}
             </h1>
-            <h2 className="text-2xl lg:text-3xl text-neon-blue font-medium">
+            <h2 
+              ref={subtitleRef}
+              className="text-3xl lg:text-4xl font-inter font-light bg-gradient-to-r from-primary to-neon-magenta bg-clip-text text-transparent"
+            >
               Professional Video Editor
             </h2>
           </div>
           
-          <p className="text-lg text-gray-300 max-w-lg leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-lg leading-[1.8] font-light">
             Crafting cinematic stories through expert video editing. Specializing in commercials, 
-            digital content, and brand narratives that captivate audiences.
+            digital content, and brand narratives that captivate audiences worldwide.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row gap-6 pt-6">
             <Button 
               size="lg" 
-              className="bg-neon-blue hover:bg-neon-blue/80 text-dark-900 font-semibold px-8 py-3 neon-glow transition-all duration-300"
+              className="group bg-primary hover:bg-primary/80 text-primary-foreground font-semibold px-10 py-4 neon-glow transition-all duration-500 transform hover:scale-105"
             >
-              View My Work
+              <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              View Showreel
             </Button>
             <Button 
               variant="outline" 
               size="lg"
-              className="border-neon-magenta text-neon-magenta hover:bg-neon-magenta hover:text-dark-900 px-8 py-3 transition-all duration-300"
+              className="glass-morphism border-primary/30 text-primary hover:bg-primary/10 px-10 py-4 transition-all duration-500 hover:scale-105"
             >
-              Get In Touch
+              Explore Projects
             </Button>
+          </div>
+
+          {/* Professional stats */}
+          <div className="flex gap-8 pt-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">500+</div>
+              <div className="text-sm text-muted-foreground font-medium">Projects Completed</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">5+</div>
+              <div className="text-sm text-muted-foreground font-medium">Years Experience</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">50+</div>
+              <div className="text-sm text-muted-foreground font-medium">Happy Clients</div>
+            </div>
           </div>
         </div>
 
-        {/* Profile Image */}
+        {/* Enhanced Profile Image with 3D effects */}
         <div ref={imageRef} className="relative">
           <div className="relative w-full max-w-lg mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/20 to-neon-magenta/20 rounded-2xl blur-xl"></div>
+            {/* Animated border */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-neon-purple to-neon-magenta rounded-2xl blur-xl opacity-30 animate-pulse"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-neon-magenta/20 rounded-2xl animate-spin" style={{ animationDuration: '20s' }}></div>
+            
             <img
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=600&fit=crop&crop=face"
-              alt="Alex - Video Editor"
-              className="relative w-full h-[500px] object-cover rounded-2xl border-2 border-neon-blue/30"
+              alt="Alex - Professional Video Editor"
+              className="relative w-full h-[600px] object-cover rounded-2xl border border-primary/20 shadow-2xl"
             />
-            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-neon-magenta rounded-full animate-pulse-glow"></div>
+            
+            {/* Floating elements */}
+            <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary/20 rounded-full blur-2xl animate-pulse"></div>
+            <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-neon-magenta/20 rounded-full blur-xl animate-bounce" style={{ animationDuration: '3s' }}></div>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-float">
-        <ArrowDown className="w-6 h-6 text-neon-blue" />
+      {/* Enhanced Scroll Indicator */}
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-4">
+        <div className="text-sm text-muted-foreground font-medium tracking-wider uppercase">Scroll to explore</div>
+        <div className="w-px h-16 bg-gradient-to-b from-primary to-transparent"></div>
+        <ArrowDown className="w-6 h-6 text-primary animate-bounce" />
       </div>
     </section>
   );
