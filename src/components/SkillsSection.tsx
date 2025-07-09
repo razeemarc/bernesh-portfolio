@@ -10,6 +10,9 @@ const SkillsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const parallaxBg1Ref = useRef<HTMLDivElement>(null);
+  const parallaxBg2Ref = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
   const skills = [
     { name: "Adobe Premiere Pro", level: 98, color: "primary", icon: "🎬" },
@@ -29,7 +32,44 @@ const SkillsSection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Skills animation with enhanced effects
+      // Advanced parallax background effects
+      gsap.to(parallaxBg1Ref.current, {
+        yPercent: -25,
+        xPercent: 5,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        }
+      });
+
+      gsap.to(parallaxBg2Ref.current, {
+        yPercent: -35,
+        xPercent: -8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.5
+        }
+      });
+
+      // Parallax for title
+      gsap.to(titleRef.current, {
+        yPercent: -20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        }
+      });
+
+      // Skills animation with enhanced effects and parallax
       skills.forEach((_, index) => {
         const skillContainer = skillsRef.current?.children[index];
         const progressBar = skillContainer?.querySelector('.progress-fill');
@@ -38,6 +78,18 @@ const SkillsSection = () => {
         const skillIcon = skillContainer?.querySelector('.skill-icon');
         
         if (progressBar && percentage && skillName && skillIcon) {
+          // Parallax effect for skill container
+          gsap.to(skillContainer, {
+            yPercent: -5 - (index % 2) * 3,
+            ease: "none",
+            scrollTrigger: {
+              trigger: skillContainer,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1 + (index % 3) * 0.2
+            }
+          });
+
           // Icon animation
           gsap.fromTo(
             skillIcon,
@@ -115,7 +167,7 @@ const SkillsSection = () => {
         }
       });
 
-      // Stats animation with stagger
+      // Stats animation with stagger and parallax
       gsap.fromTo(
         statsRef.current?.children || [],
         { 
@@ -138,23 +190,39 @@ const SkillsSection = () => {
         }
       );
 
+      // Parallax for stats
+      gsap.to(statsRef.current, {
+        yPercent: -10,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.2
+        }
+      });
+
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 professional-gradient relative">
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-10 w-96 h-96 bg-neon-purple/5 rounded-full blur-3xl"></div>
-      </div>
+    <section ref={sectionRef} className="py-32 professional-gradient relative overflow-hidden">
+      {/* Parallax background elements */}
+      <div 
+        ref={parallaxBg1Ref}
+        className="absolute top-1/4 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"
+      ></div>
+      <div 
+        ref={parallaxBg2Ref}
+        className="absolute bottom-1/4 left-10 w-96 h-96 bg-neon-purple/5 rounded-full blur-3xl"
+      ></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div>
-            <h2 className="text-5xl lg:text-6xl font-playfair font-bold mb-8 text-shadow">
+            <h2 ref={titleRef} className="text-5xl lg:text-6xl font-playfair font-bold mb-8 text-shadow">
               Technical <span className="gradient-text">Mastery</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-12 leading-[1.8] font-light">

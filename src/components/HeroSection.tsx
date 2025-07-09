@@ -1,11 +1,12 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextPlugin } from 'gsap/TextPlugin';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Play } from 'lucide-react';
 
-gsap.registerPlugin(TextPlugin);
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -14,9 +15,69 @@ const HeroSection = () => {
   const particlesRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLHeadingElement>(null);
+  const backgroundLayer1Ref = useRef<HTMLDivElement>(null);
+  const backgroundLayer2Ref = useRef<HTMLDivElement>(null);
+  const backgroundLayer3Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Advanced parallax background layers
+      gsap.to(backgroundLayer1Ref.current, {
+        yPercent: -50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        }
+      });
+
+      gsap.to(backgroundLayer2Ref.current, {
+        yPercent: -30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 2
+        }
+      });
+
+      gsap.to(backgroundLayer3Ref.current, {
+        yPercent: -20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 3
+        }
+      });
+
+      // Parallax for main content
+      gsap.to(textRef.current, {
+        yPercent: -20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.5
+        }
+      });
+
+      gsap.to(imageRef.current, {
+        yPercent: -30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 2
+        }
+      });
+
       // Advanced typing animation for title
       gsap.fromTo(
         titleRef.current,
@@ -87,7 +148,7 @@ const HeroSection = () => {
         }
       );
 
-      // Enhanced floating particles with physics
+      // Enhanced floating particles with physics and parallax
       const particles = particlesRef.current?.children;
       if (particles) {
         Array.from(particles).forEach((particle, index) => {
@@ -98,6 +159,7 @@ const HeroSection = () => {
             opacity: Math.random() * 0.5 + 0.2
           });
 
+          // Main floating animation
           gsap.to(particle, {
             y: `random(-30, 30)`,
             x: `random(-30, 30)`,
@@ -106,6 +168,18 @@ const HeroSection = () => {
             yoyo: true,
             ease: "sine.inOut",
             delay: index * 0.1
+          });
+
+          // Parallax effect for particles
+          gsap.to(particle, {
+            yPercent: -10 - (index % 3) * 5,
+            ease: "none",
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1 + (index % 3) * 0.5
+            }
           });
 
           // Pulsing effect
@@ -121,14 +195,6 @@ const HeroSection = () => {
         });
       }
 
-      // Continuous background animation
-      gsap.to(heroRef.current, {
-        backgroundPosition: "200% 0%",
-        duration: 20,
-        repeat: -1,
-        ease: "none"
-      });
-
     }, heroRef);
 
     return () => ctx.revert();
@@ -139,6 +205,20 @@ const HeroSection = () => {
       ref={heroRef} 
       className="min-h-screen professional-gradient relative overflow-hidden flex items-center"
     >
+      {/* Parallax Background Layers */}
+      <div 
+        ref={backgroundLayer1Ref}
+        className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-neon-magenta/5"
+      ></div>
+      <div 
+        ref={backgroundLayer2Ref}
+        className="absolute inset-0 bg-gradient-to-tr from-transparent via-neon-purple/3 to-transparent"
+      ></div>
+      <div 
+        ref={backgroundLayer3Ref}
+        className="absolute inset-0 bg-radial-gradient from-primary/10 via-transparent to-transparent"
+      ></div>
+
       {/* Enhanced Animated Background Particles */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
         {Array.from({ length: 50 }).map((_, i) => (
@@ -156,11 +236,11 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* Geometric shapes overlay */}
+      {/* Geometric shapes overlay with parallax */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-20 w-32 h-32 border border-primary/20 rotate-45"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 border border-neon-magenta/20 rotate-12"></div>
-        <div className="absolute top-1/2 left-10 w-16 h-16 bg-neon-purple/10 rounded-full blur-sm"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 border border-primary/20 rotate-45 parallax-slow"></div>
+        <div className="absolute bottom-20 right-20 w-24 h-24 border border-neon-magenta/20 rotate-12 parallax-medium"></div>
+        <div className="absolute top-1/2 left-10 w-16 h-16 bg-neon-purple/10 rounded-full blur-sm parallax-fast"></div>
       </div>
 
       <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">

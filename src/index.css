@@ -100,6 +100,101 @@
       hsl(210, 40%, 3%) 75%,
       hsl(210, 40%, 2%) 100%);
   }
+
+  /* Advanced Parallax Utilities */
+  .parallax-slow {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .parallax-medium {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .parallax-fast {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Enhanced gradient backgrounds */
+  .bg-radial-gradient {
+    background: radial-gradient(circle at center, var(--tw-gradient-stops));
+  }
+
+  /* Smooth parallax performance */
+  .parallax-container {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* 3D transform utilities */
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  /* Advanced animation utilities */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  .animate-parallax-slow {
+    animation: parallax-slow 20s linear infinite;
+  }
+
+  .animate-parallax-medium {
+    animation: parallax-medium 15s linear infinite;
+  }
+
+  .animate-parallax-fast {
+    animation: parallax-fast 10s linear infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes parallax-slow {
+  0% {
+    transform: translateX(-100px) translateY(-50px);
+  }
+  100% {
+    transform: translateX(100px) translateY(50px);
+  }
+}
+
+@keyframes parallax-medium {
+  0% {
+    transform: translateX(-75px) translateY(-25px);
+  }
+  100% {
+    transform: translateX(75px) translateY(25px);
+  }
+}
+
+@keyframes parallax-fast {
+  0% {
+    transform: translateX(-50px) translateY(-10px);
+  }
+  100% {
+    transform: translateX(50px) translateY(10px);
+  }
 }
 
 /* Custom scrollbar */
@@ -117,4 +212,11 @@
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-primary/70;
+}
+
+/* Performance optimizations for parallax */
+.parallax-optimized {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }

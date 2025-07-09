@@ -11,6 +11,8 @@ const ServicesSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
+  const parallaxLayer1Ref = useRef<HTMLDivElement>(null);
+  const parallaxLayer2Ref = useRef<HTMLDivElement>(null);
 
   const services = [
     {
@@ -59,31 +61,55 @@ const ServicesSection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Parallax background animation
+      // Advanced parallax background layers
       gsap.to(backgroundRef.current, {
-        yPercent: -50,
+        yPercent: -30,
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top bottom",
           end: "bottom top",
-          scrub: true
+          scrub: 1
         }
       });
 
-      // Enhanced title animation with split text effect
+      gsap.to(parallaxLayer1Ref.current, {
+        yPercent: -20,
+        xPercent: 10,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 2
+        }
+      });
+
+      gsap.to(parallaxLayer2Ref.current, {
+        yPercent: -40,
+        xPercent: -5,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.5
+        }
+      });
+
+      // Enhanced title animation with parallax
       gsap.fromTo(
         titleRef.current,
         { 
           opacity: 0, 
-          y: 80,
+          y: 100,
           skewY: 7
         },
         {
           opacity: 1,
           y: 0,
           skewY: 0,
-          duration: 1.2,
+          duration: 1.5,
           ease: "power3.out",
           scrollTrigger: {
             trigger: titleRef.current,
@@ -93,10 +119,23 @@ const ServicesSection = () => {
         }
       );
 
-      // Advanced cards animation with 3D transforms
+      // Parallax effect for title
+      gsap.to(titleRef.current, {
+        yPercent: -15,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        }
+      });
+
+      // Advanced cards animation with 3D transforms and parallax
       const cards = cardsRef.current?.children;
       if (cards) {
         Array.from(cards).forEach((card, index) => {
+          // Main entrance animation
           gsap.fromTo(
             card,
             { 
@@ -111,7 +150,7 @@ const ServicesSection = () => {
               y: 0,
               scale: 1,
               rotationX: 0,
-              duration: 1,
+              duration: 1.2,
               ease: "power3.out",
               delay: services[index].delay,
               scrollTrigger: {
@@ -123,14 +162,27 @@ const ServicesSection = () => {
             }
           );
 
-          // Hover animations
+          // Parallax effect for individual cards
+          gsap.to(card, {
+            yPercent: -10 - (index % 2) * 5,
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1 + (index % 3) * 0.3
+            }
+          });
+
+          // Enhanced hover animations
           const cardElement = card as HTMLElement;
           const handleMouseEnter = () => {
             gsap.to(card, {
-              y: -10,
-              scale: 1.03,
-              boxShadow: "0 20px 40px rgba(0, 212, 255, 0.2)",
-              duration: 0.3,
+              y: -15,
+              scale: 1.05,
+              rotationY: 5,
+              boxShadow: "0 25px 50px rgba(0, 212, 255, 0.3)",
+              duration: 0.4,
               ease: "power2.out"
             });
           };
@@ -139,8 +191,9 @@ const ServicesSection = () => {
             gsap.to(card, {
               y: 0,
               scale: 1,
+              rotationY: 0,
               boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
-              duration: 0.3,
+              duration: 0.4,
               ease: "power2.out"
             });
           };
@@ -156,17 +209,21 @@ const ServicesSection = () => {
 
   return (
     <section ref={sectionRef} className="py-32 relative overflow-hidden">
-      {/* Animated background */}
+      {/* Parallax animated background layers */}
       <div 
         ref={backgroundRef}
         className="absolute inset-0 bg-gradient-to-br from-card via-background to-card opacity-50"
       ></div>
       
-      {/* Background geometric shapes */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-neon-magenta/5 rounded-full blur-3xl"></div>
-      </div>
+      {/* Advanced parallax background geometric shapes */}
+      <div 
+        ref={parallaxLayer1Ref}
+        className="absolute top-1/4 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"
+      ></div>
+      <div 
+        ref={parallaxLayer2Ref}
+        className="absolute bottom-1/4 right-10 w-80 h-80 bg-neon-magenta/5 rounded-full blur-3xl"
+      ></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-20">
