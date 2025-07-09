@@ -94,12 +94,12 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-dark-800">
+    <section ref={sectionRef} className="py-20 bg-card">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl lg:text-5xl font-playfair font-bold text-center mb-4">
           Featured <span className="gradient-text">Projects</span>
         </h2>
-        <p className="text-xl text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+        <p className="text-xl text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
           A showcase of my recent work across different platforms and industries
         </p>
 
@@ -112,8 +112,8 @@ const ProjectsSection = () => {
               variant={activeTab === tab.id ? "default" : "outline"}
               className={`px-6 py-3 rounded-full transition-all duration-300 ${
                 activeTab === tab.id
-                  ? 'bg-neon-blue text-dark-900 neon-glow'
-                  : 'border-dark-600 text-gray-400 hover:border-neon-blue hover:text-neon-blue'
+                  ? 'bg-primary text-primary-foreground professional-glow'
+                  : 'border-border text-muted-foreground hover:border-primary hover:text-primary'
               }`}
             >
               {tab.label}
@@ -126,7 +126,7 @@ const ProjectsSection = () => {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="group bg-dark-700 rounded-2xl overflow-hidden border border-dark-600 hover:border-neon-blue/50 transition-all duration-300 cursor-pointer"
+              className="group bg-secondary rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 cursor-pointer"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -134,18 +134,18 @@ const ProjectsSection = () => {
                   alt={project.title}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300"></div>
+                <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-all duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Button className="bg-neon-blue/90 hover:bg-neon-blue text-dark-900 font-semibold">
+                  <Button className="bg-primary/90 hover:bg-primary text-primary-foreground font-semibold">
                     Watch Project
                   </Button>
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-neon-blue transition-colors duration-300">
+                <h3 className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
                   {project.title}
                 </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {project.description}
                 </p>
               </div>

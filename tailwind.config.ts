@@ -63,18 +63,38 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom video editor theme colors
-				dark: {
-					900: '#0a0a0a',
-					800: '#1a1a1a',
-					700: '#2a2a2a',
-					600: '#3a3a3a',
-				},
-				neon: {
-					blue: '#00d4ff',
-					magenta: '#ff0080',
-					purple: '#8b5cf6',
-					teal: '#14b8a6',
+				// Professional color palette
+				professional: {
+					slate: {
+						50: 'hsl(210, 40%, 98%)',
+						100: 'hsl(210, 40%, 96%)',
+						200: 'hsl(210, 25%, 88%)',
+						300: 'hsl(214, 20%, 69%)',
+						400: 'hsl(215, 20%, 65%)',
+						500: 'hsl(215, 16%, 47%)',
+						600: 'hsl(215, 19%, 35%)',
+						700: 'hsl(215, 25%, 27%)',
+						800: 'hsl(217, 33%, 17%)',
+						900: 'hsl(222, 47%, 11%)'
+					},
+					blue: {
+						50: 'hsl(214, 100%, 97%)',
+						100: 'hsl(214, 95%, 93%)',
+						200: 'hsl(213, 97%, 87%)',
+						300: 'hsl(212, 96%, 78%)',
+						400: 'hsl(213, 94%, 68%)',
+						500: 'hsl(214, 100%, 65%)',
+						600: 'hsl(221, 83%, 53%)',
+						700: 'hsl(224, 76%, 48%)',
+						800: 'hsl(226, 71%, 40%)',
+						900: 'hsl(224, 64%, 33%)'
+					},
+					accent: {
+						cyan: 'hsl(189, 94%, 43%)',
+						teal: 'hsl(170, 76%, 42%)',
+						emerald: 'hsl(160, 84%, 39%)',
+						amber: 'hsl(43, 96%, 56%)'
+					}
 				}
 			},
 			borderRadius: {
@@ -104,8 +124,8 @@ export default {
 					'50%': { transform: 'translateY(-10px)' }
 				},
 				'pulse-glow': {
-					'0%, 100%': { boxShadow: '0 0 5px rgba(0, 212, 255, 0.5)' },
-					'50%': { boxShadow: '0 0 20px rgba(0, 212, 255, 0.8)' }
+					'0%, 100%': { boxShadow: '0 0 5px hsla(214, 100%, 65%, 0.3)' },
+					'50%': { boxShadow: '0 0 20px hsla(214, 100%, 65%, 0.6)' }
 				}
 			},
 			animation: {

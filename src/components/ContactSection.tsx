@@ -55,13 +55,13 @@ const ContactSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-dark-900">
+    <section ref={sectionRef} className="py-20 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl lg:text-5xl font-playfair font-bold text-center mb-4">
             Let's Create Something <span className="gradient-text">Amazing</span>
           </h2>
-          <p className="text-xl text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
             Ready to bring your vision to life? Get in touch and let's discuss your next project.
           </p>
 
@@ -69,33 +69,33 @@ const ContactSection = () => {
             {/* Contact Info */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-semibold mb-6 text-white">Get In Touch</h3>
+                <h3 className="text-2xl font-semibold mb-6 text-foreground">Get In Touch</h3>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-neon-blue/20 rounded-full flex items-center justify-center">
-                      <span className="text-neon-blue">📧</span>
+                    <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                      <span className="text-primary">📧</span>
                     </div>
                     <div>
-                      <p className="text-gray-400">Email</p>
-                      <p className="text-white font-medium">alex@videoeditor.com</p>
+                      <p className="text-muted-foreground">Email</p>
+                      <p className="text-foreground font-medium">alex@videoeditor.com</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-neon-magenta/20 rounded-full flex items-center justify-center">
-                      <span className="text-neon-magenta">📱</span>
+                    <div className="w-12 h-12 bg-professional-accent-teal/20 rounded-full flex items-center justify-center">
+                      <span className="text-professional-accent-teal">📱</span>
                     </div>
                     <div>
-                      <p className="text-gray-400">Phone</p>
-                      <p className="text-white font-medium">+1 (555) 123-4567</p>
+                      <p className="text-muted-foreground">Phone</p>
+                      <p className="text-foreground font-medium">+1 (555) 123-4567</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-neon-purple/20 rounded-full flex items-center justify-center">
-                      <span className="text-neon-purple">📍</span>
+                    <div className="w-12 h-12 bg-professional-accent-emerald/20 rounded-full flex items-center justify-center">
+                      <span className="text-professional-accent-emerald">📍</span>
                     </div>
                     <div>
-                      <p className="text-gray-400">Location</p>
-                      <p className="text-white font-medium">Los Angeles, CA</p>
+                      <p className="text-muted-foreground">Location</p>
+                      <p className="text-foreground font-medium">Los Angeles, CA</p>
                     </div>
                   </div>
                 </div>
@@ -103,14 +103,14 @@ const ContactSection = () => {
 
               {/* Social Links */}
               <div>
-                <h4 className="text-lg font-medium mb-4 text-white">Follow My Work</h4>
+                <h4 className="text-lg font-medium mb-4 text-foreground">Follow My Work</h4>
                 <div className="flex space-x-4">
                   {['Instagram', 'LinkedIn', 'YouTube', 'Vimeo'].map((social, index) => (
                     <div
                       key={social}
-                      className="w-12 h-12 bg-dark-700 hover:bg-neon-blue/20 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110"
+                      className="w-12 h-12 bg-secondary hover:bg-primary/20 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110"
                     >
-                      <span className="text-neon-blue text-sm font-medium">
+                      <span className="text-primary text-sm font-medium">
                         {social.slice(0, 2)}
                       </span>
                     </div>
@@ -128,13 +128,13 @@ const ContactSection = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocused('name')}
                   onBlur={() => setFocused(null)}
-                  className="bg-dark-700 border-dark-600 focus:border-neon-blue text-white h-14 px-4 pt-6"
+                  className="bg-secondary border-border focus:border-primary text-foreground h-14 px-4 pt-6"
                   placeholder=" "
                 />
                 <label className={`absolute left-4 transition-all duration-300 pointer-events-none ${
                   focused === 'name' || formData.name 
-                    ? 'top-2 text-xs text-neon-blue' 
-                    : 'top-4 text-gray-400'
+                    ? 'top-2 text-xs text-primary' 
+                    : 'top-4 text-muted-foreground'
                 }`}>
                   Your Name
                 </label>
@@ -148,13 +148,13 @@ const ContactSection = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocused('email')}
                   onBlur={() => setFocused(null)}
-                  className="bg-dark-700 border-dark-600 focus:border-neon-blue text-white h-14 px-4 pt-6"
+                  className="bg-secondary border-border focus:border-primary text-foreground h-14 px-4 pt-6"
                   placeholder=" "
                 />
                 <label className={`absolute left-4 transition-all duration-300 pointer-events-none ${
                   focused === 'email' || formData.email 
-                    ? 'top-2 text-xs text-neon-blue' 
-                    : 'top-4 text-gray-400'
+                    ? 'top-2 text-xs text-primary' 
+                    : 'top-4 text-muted-foreground'
                 }`}>
                   Email Address
                 </label>
@@ -167,13 +167,13 @@ const ContactSection = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocused('message')}
                   onBlur={() => setFocused(null)}
-                  className="bg-dark-700 border-dark-600 focus:border-neon-blue text-white min-h-32 px-4 pt-6 resize-none"
+                  className="bg-secondary border-border focus:border-primary text-foreground min-h-32 px-4 pt-6 resize-none"
                   placeholder=" "
                 />
                 <label className={`absolute left-4 transition-all duration-300 pointer-events-none ${
                   focused === 'message' || formData.message 
-                    ? 'top-2 text-xs text-neon-blue' 
-                    : 'top-4 text-gray-400'
+                    ? 'top-2 text-xs text-primary' 
+                    : 'top-4 text-muted-foreground'
                 }`}>
                   Project Details
                 </label>
@@ -181,7 +181,7 @@ const ContactSection = () => {
 
               <Button 
                 type="submit"
-                className="w-full bg-gradient-to-r from-neon-blue to-neon-magenta hover:from-neon-blue/80 hover:to-neon-magenta/80 text-dark-900 font-semibold h-14 neon-glow transition-all duration-300"
+                className="w-full bg-gradient-to-r from-primary to-professional-blue-600 hover:from-primary/90 hover:to-professional-blue-600/90 text-primary-foreground font-semibold h-14 professional-glow transition-all duration-300"
               >
                 Send Message
               </Button>

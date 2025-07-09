@@ -44,22 +44,22 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-dark-900 text-white overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-dark-900/80 backdrop-blur-lg border-b border-dark-700">
+      <nav className="fixed top-0 left-0 right-0 z-50 glass-morphism border-b border-border">
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="text-2xl font-playfair font-bold gradient-text">
               ALEX
             </div>
             <div className="hidden md:flex space-x-8">
-              <a href="#home" className="text-gray-300 hover:text-neon-blue transition-colors duration-300">Home</a>
-              <a href="#services" className="text-gray-300 hover:text-neon-blue transition-colors duration-300">Services</a>
-              <a href="#skills" className="text-gray-300 hover:text-neon-blue transition-colors duration-300">Skills</a>
-              <a href="#projects" className="text-gray-300 hover:text-neon-blue transition-colors duration-300">Projects</a>
-              <a href="#contact" className="text-gray-300 hover:text-neon-blue transition-colors duration-300">Contact</a>
+              <a href="#home" className="text-muted-foreground hover:text-primary transition-colors duration-300">Home</a>
+              <a href="#services" className="text-muted-foreground hover:text-primary transition-colors duration-300">Services</a>
+              <a href="#skills" className="text-muted-foreground hover:text-primary transition-colors duration-300">Skills</a>
+              <a href="#projects" className="text-muted-foreground hover:text-primary transition-colors duration-300">Projects</a>
+              <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors duration-300">Contact</a>
             </div>
-            <Button className="bg-neon-blue hover:bg-neon-blue/80 text-dark-900 font-semibold">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold professional-glow">
               Hire Me
             </Button>
           </div>
@@ -90,35 +90,35 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-dark-800 border-t border-dark-700 py-12">
+      <footer className="bg-card border-t border-border py-12">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-2xl font-playfair font-bold gradient-text mb-4">ALEX</h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 Professional video editor creating cinematic experiences that captivate and inspire.
               </p>
             </div>
             
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-white">Quick Links</h4>
+              <h4 className="text-lg font-semibold mb-4 text-foreground">Quick Links</h4>
               <div className="space-y-2">
-                <a href="#home" className="block text-gray-400 hover:text-neon-blue transition-colors duration-300">Home</a>
-                <a href="#services" className="block text-gray-400 hover:text-neon-blue transition-colors duration-300">Services</a>
-                <a href="#projects" className="block text-gray-400 hover:text-neon-blue transition-colors duration-300">Projects</a>
-                <a href="#contact" className="block text-gray-400 hover:text-neon-blue transition-colors duration-300">Contact</a>
+                <a href="#home" className="block text-muted-foreground hover:text-primary transition-colors duration-300">Home</a>
+                <a href="#services" className="block text-muted-foreground hover:text-primary transition-colors duration-300">Services</a>
+                <a href="#projects" className="block text-muted-foreground hover:text-primary transition-colors duration-300">Projects</a>
+                <a href="#contact" className="block text-muted-foreground hover:text-primary transition-colors duration-300">Contact</a>
               </div>
             </div>
             
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-white">Connect</h4>
+              <h4 className="text-lg font-semibold mb-4 text-foreground">Connect</h4>
               <div className="flex space-x-4">
                 {['Instagram', 'LinkedIn', 'YouTube', 'Vimeo'].map((social) => (
                   <div
                     key={social}
-                    className="w-10 h-10 bg-dark-700 hover:bg-neon-blue/20 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110"
+                    className="w-10 h-10 bg-secondary hover:bg-primary/20 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110"
                   >
-                    <span className="text-neon-blue text-xs font-medium">
+                    <span className="text-primary text-xs font-medium">
                       {social.slice(0, 2)}
                     </span>
                   </div>
@@ -127,8 +127,8 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="border-t border-dark-700 mt-8 pt-8 text-center">
-            <p className="text-gray-400">
+          <div className="border-t border-border mt-8 pt-8 text-center">
+            <p className="text-muted-foreground">
               © 2024 Alex Video Editor. All rights reserved.
             </p>
           </div>
@@ -138,7 +138,7 @@ const Index = () => {
       {/* Scroll to Top Button */}
       <Button
         id="scroll-to-top"
-        className="fixed bottom-8 right-8 opacity-0 w-12 h-12 rounded-full bg-neon-blue hover:bg-neon-blue/80 text-dark-900 transition-all duration-300 z-50 p-0"
+        className="fixed bottom-8 right-8 opacity-0 w-12 h-12 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 z-50 p-0 professional-glow"
       >
         <ArrowUp className="w-5 h-5" />
       </Button>
