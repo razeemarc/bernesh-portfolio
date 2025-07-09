@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -21,7 +20,7 @@ const HeroSection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Advanced parallax background layers
+      // Parallax background layers
       gsap.to(backgroundLayer1Ref.current, {
         yPercent: -50,
         ease: "none",
@@ -55,7 +54,7 @@ const HeroSection = () => {
         }
       });
 
-      // Parallax for main content
+      // Parallax text & image
       gsap.to(textRef.current, {
         yPercent: -20,
         ease: "none",
@@ -78,7 +77,7 @@ const HeroSection = () => {
         }
       });
 
-      // Advanced typing animation for title
+      // Typing animation
       gsap.fromTo(
         titleRef.current,
         { opacity: 0 },
@@ -90,7 +89,7 @@ const HeroSection = () => {
             gsap.to(titleRef.current, {
               duration: 2,
               text: {
-                value: " I'm Bernesh",
+                value: " Hi I'm Bernesh",
                 delimiter: ""
               },
               ease: "none"
@@ -99,7 +98,7 @@ const HeroSection = () => {
         }
       );
 
-      // Subtitle animation with stagger
+      // Subtitle animation
       gsap.fromTo(
         subtitleRef.current,
         { opacity: 0, y: 30 },
@@ -112,7 +111,7 @@ const HeroSection = () => {
         }
       );
 
-      // Professional text content animation
+      // Text children animation
       gsap.fromTo(
         textRef.current?.children || [],
         { opacity: 0, y: 50, rotationX: 15 },
@@ -127,12 +126,12 @@ const HeroSection = () => {
         }
       );
 
-      // Advanced image entrance with 3D effect
+      // Image animation
       gsap.fromTo(
         imageRef.current,
-        { 
-          opacity: 0, 
-          x: 200, 
+        {
+          opacity: 0,
+          x: 200,
           scale: 0.8,
           rotationY: 45,
           transformPerspective: 1000
@@ -148,7 +147,7 @@ const HeroSection = () => {
         }
       );
 
-      // Enhanced floating particles with physics and parallax
+      // Particle animations
       const particles = particlesRef.current?.children;
       if (particles) {
         Array.from(particles).forEach((particle, index) => {
@@ -159,7 +158,6 @@ const HeroSection = () => {
             opacity: Math.random() * 0.5 + 0.2
           });
 
-          // Main floating animation
           gsap.to(particle, {
             y: `random(-30, 30)`,
             x: `random(-30, 30)`,
@@ -170,7 +168,6 @@ const HeroSection = () => {
             delay: index * 0.1
           });
 
-          // Parallax effect for particles
           gsap.to(particle, {
             yPercent: -10 - (index % 3) * 5,
             ease: "none",
@@ -182,7 +179,6 @@ const HeroSection = () => {
             }
           });
 
-          // Pulsing effect
           gsap.to(particle, {
             scale: `random(0.5, 1.2)`,
             opacity: `random(0.2, 0.8)`,
@@ -194,39 +190,30 @@ const HeroSection = () => {
           });
         });
       }
-
     }, heroRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section 
-      ref={heroRef} 
+    <section
+      ref={heroRef}
       className="min-h-screen professional-gradient relative overflow-hidden flex items-center"
     >
       {/* Parallax Background Layers */}
-      <div 
-        ref={backgroundLayer1Ref}
-        className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-neon-magenta/5"
-      ></div>
-      <div 
-        ref={backgroundLayer2Ref}
-        className="absolute inset-0 bg-gradient-to-tr from-transparent via-neon-purple/3 to-transparent"
-      ></div>
-      <div 
-        ref={backgroundLayer3Ref}
-        className="absolute inset-0 bg-radial-gradient from-primary/10 via-transparent to-transparent"
-      ></div>
+      <div ref={backgroundLayer1Ref} className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-neon-magenta/5" />
+      <div ref={backgroundLayer2Ref} className="absolute inset-0 bg-gradient-to-tr from-transparent via-neon-purple/3 to-transparent" />
+      <div ref={backgroundLayer3Ref} className="absolute inset-0 bg-radial-gradient from-primary/10 via-transparent to-transparent" />
 
-      {/* Enhanced Animated Background Particles */}
+      {/* Particles */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
         {Array.from({ length: 50 }).map((_, i) => (
           <div
             key={i}
             className={`absolute rounded-full ${
-              i % 3 === 0 ? 'bg-primary/30' : 
-              i % 3 === 1 ? 'bg-neon-magenta/20' : 'bg-neon-purple/25'
+              i % 3 === 0 ? 'bg-primary/30' :
+              i % 3 === 1 ? 'bg-neon-magenta/20' :
+              'bg-neon-purple/25'
             }`}
             style={{
               width: Math.random() * 6 + 2 + 'px',
@@ -236,7 +223,7 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* Geometric shapes overlay with parallax */}
+      {/* Overlay Shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-20 w-32 h-32 border border-primary/20 rotate-45 parallax-slow"></div>
         <div className="absolute bottom-20 right-20 w-24 h-24 border border-neon-magenta/20 rotate-12 parallax-medium"></div>
@@ -244,38 +231,38 @@ const HeroSection = () => {
       </div>
 
       <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-        {/* Enhanced Text Content */}
+        {/* Text Content */}
         <div ref={textRef} className="space-y-8">
           <div className="space-y-6">
-            <h1 
+            <h1
               ref={titleRef}
-              className="text-6xl lg:text-8xl font-playfair font-bold leading-tight text-shadow"
+              className="mt-20 text-6xl lg:text-8xl font-playfair font-bold leading-tight text-shadow"
             >
-              {/* Text will be animated via GSAP */}
+              {/* Animated via GSAP */}
             </h1>
-            <h2 
+            <h2
               ref={subtitleRef}
               className="text-3xl lg:text-4xl font-inter font-light bg-gradient-to-r from-primary to-neon-magenta bg-clip-text text-transparent"
             >
               Professional Video Editor
             </h2>
           </div>
-          
+
           <p className="text-xl text-muted-foreground max-w-lg leading-[1.8] font-light">
-            Crafting cinematic stories through expert video editing. Specializing in commercials, 
+            Crafting cinematic stories through expert video editing. Specializing in commercials,
             digital content, and brand narratives that captivate audiences worldwide.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-6 pt-6">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="group bg-primary hover:bg-primary/80 text-primary-foreground font-semibold px-10 py-4 neon-glow transition-all duration-500 transform hover:scale-105"
             >
               <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               View Showreel
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="lg"
               className="glass-morphism border-primary/30 text-primary hover:bg-primary/10 px-10 py-4 transition-all duration-500 hover:scale-105"
             >
@@ -283,7 +270,6 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Professional stats */}
           <div className="flex gap-8 pt-8">
             <div className="text-center">
               <div className="text-3xl font-bold text-primary">500+</div>
@@ -300,27 +286,26 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Enhanced Profile Image with 3D effects */}
-        <div ref={imageRef} className="relative">
-          <div className="relative w-full max-w-lg mx-auto">
-            {/* Animated border */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary via-neon-purple to-neon-magenta rounded-2xl blur-xl opacity-30 animate-pulse"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-neon-magenta/20 rounded-2xl animate-spin" style={{ animationDuration: '20s' }}></div>
-            
-            <img
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=600&fit=crop&crop=face"
-              alt="Bernesh - Professional Video Editor"
-              className="relative w-full h-[600px] object-cover rounded-2xl border border-primary/20 shadow-2xl"
-            />
-            
-            {/* Floating elements */}
-            <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary/20 rounded-full blur-2xl animate-pulse"></div>
-            <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-neon-magenta/20 rounded-full blur-xl animate-bounce" style={{ animationDuration: '3s' }}></div>
-          </div>
-        </div>
+       
+      {/* Image */}
+<div ref={imageRef} className="relative">
+  <div className="relative w-full max-w-lg mx-auto mt-32">
+    <div className="absolute inset-0 bg-gradient-to-r from-primary via-neon-purple to-neon-magenta rounded-2xl blur-xl opacity-30 animate-pulse"></div>
+    <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-neon-magenta/20 rounded-2xl animate-spin" style={{ animationDuration: '20s' }}></div>
+
+    <img
+      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=600&fit=crop&crop=face"
+      alt="Bernesh - Professional Video Editor"
+      className="relative w-full h-[600px] object-cover rounded-2xl border border-primary/20 shadow-2xl"
+    />
+
+    <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary/20 rounded-full blur-2xl animate-pulse"></div>
+    <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-neon-magenta/20 rounded-full blur-xl animate-bounce" style={{ animationDuration: '3s' }}></div>
+  </div>
+</div>
+
       </div>
 
-      {/* Enhanced Scroll Indicator */}
       <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-4">
         <div className="text-sm text-muted-foreground font-medium tracking-wider uppercase">Scroll to explore</div>
         <div className="w-px h-16 bg-gradient-to-b from-primary to-transparent"></div>

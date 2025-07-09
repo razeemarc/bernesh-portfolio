@@ -25,7 +25,7 @@ const SkillsSection = () => {
 
   const achievements = [
     { number: "500+", label: "Projects Completed", icon: Award },
-    { number: "5+", label: "Years Experience", icon: Zap },
+    { number: "2+", label: "Years Experience", icon: Zap },
     { number: "98%", label: "Client Satisfaction", icon: Star },
     { number: "50+", label: "Happy Clients", icon: Award }
   ];
