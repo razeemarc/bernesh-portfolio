@@ -50,7 +50,7 @@ const Index = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="text-2xl font-playfair font-bold gradient-text">
-              ALEX
+              BERNESH
             </div>
             <div className="hidden md:flex space-x-8">
               <a href="#home" className="text-muted-foreground hover:text-primary transition-colors duration-300">Home</a>
@@ -94,7 +94,7 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-2xl font-playfair font-bold gradient-text mb-4">ALEX</h3>
+              <h3 className="text-2xl font-playfair font-bold gradient-text mb-4">BERNESH</h3>
               <p className="text-muted-foreground leading-relaxed">
                 Professional video editor creating cinematic experiences that captivate and inspire.
               </p>
@@ -129,7 +129,7 @@ const Index = () => {
           
           <div className="border-t border-border mt-8 pt-8 text-center">
             <p className="text-muted-foreground">
-              © 2024 Alex Video Editor. All rights reserved.
+              © 2024 Bernesh Video Editor. All rights reserved.
             </p>
           </div>
         </div>

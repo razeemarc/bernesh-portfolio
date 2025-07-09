@@ -90,7 +90,7 @@ const HeroSection = () => {
             gsap.to(titleRef.current, {
               duration: 2,
               text: {
-                value: "Hi, I'm Alex",
+                value: " I'm Bernesh",
                 delimiter: ""
               },
               ease: "none"
@@ -309,7 +309,7 @@ const HeroSection = () => {
             
             <img
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=600&fit=crop&crop=face"
-              alt="Alex - Professional Video Editor"
+              alt="Bernesh - Professional Video Editor"
               className="relative w-full h-[600px] object-cover rounded-2xl border border-primary/20 shadow-2xl"
             />
             

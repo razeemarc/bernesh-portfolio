@@ -77,7 +77,7 @@ const ContactSection = () => {
                     </div>
                     <div>
                       <p className="text-muted-foreground">Email</p>
-                      <p className="text-foreground font-medium">alex@videoeditor.com</p>
+                      <p className="text-foreground font-medium">bernesh@videoeditor.com</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
