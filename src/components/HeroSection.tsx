@@ -236,7 +236,7 @@ const HeroSection = () => {
           <div className="space-y-6">
             <h1
               ref={titleRef}
-              className="mt-20 text-6xl lg:text-8xl font-playfair font-bold leading-tight text-shadow"
+              className="mt-32 text-6xl lg:text-8xl font-playfair font-bold leading-tight text-shadow"
             >
               {/* Animated via GSAP */}
             </h1>
@@ -286,24 +286,22 @@ const HeroSection = () => {
           </div>
         </div>
 
-       
-      {/* Image */}
-<div ref={imageRef} className="relative">
-  <div className="relative w-full max-w-lg mx-auto mt-32">
-    <div className="absolute inset-0 bg-gradient-to-r from-primary via-neon-purple to-neon-magenta rounded-2xl blur-xl opacity-30 animate-pulse"></div>
-    <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-neon-magenta/20 rounded-2xl animate-spin" style={{ animationDuration: '20s' }}></div>
+        {/* Image */}
+        <div ref={imageRef} className="relative">
+          <div className="relative w-full max-w-lg mx-auto mt-32">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-neon-purple to-neon-magenta rounded-2xl blur-xl opacity-30 animate-pulse"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-neon-magenta/20 rounded-2xl animate-spin" style={{ animationDuration: '20s' }}></div>
 
-    <img
-      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=600&fit=crop&crop=face"
-      alt="Bernesh - Professional Video Editor"
-      className="relative w-full h-[600px] object-cover rounded-2xl border border-primary/20 shadow-2xl"
-    />
+            <img
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=600&fit=crop&crop=face"
+              alt="Bernesh - Professional Video Editor"
+              className="relative w-full h-[600px] object-cover rounded-2xl border border-primary/20 shadow-2xl"
+            />
 
-    <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary/20 rounded-full blur-2xl animate-pulse"></div>
-    <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-neon-magenta/20 rounded-full blur-xl animate-bounce" style={{ animationDuration: '3s' }}></div>
-  </div>
-</div>
-
+            <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary/20 rounded-full blur-2xl animate-pulse"></div>
+            <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-neon-magenta/20 rounded-full blur-xl animate-bounce" style={{ animationDuration: '3s' }}></div>
+          </div>
+        </div>
       </div>
 
       <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-4">
