@@ -293,7 +293,7 @@ const HeroSection = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-neon-magenta/20 rounded-2xl animate-spin" style={{ animationDuration: '20s' }}></div>
 
             <img
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=600&fit=crop&crop=face"
+              src="/bernesh.jpg"
               alt="Bernesh - Professional Video Editor"
               className="relative w-full h-[600px] object-cover rounded-2xl border border-primary/20 shadow-2xl"
             />
