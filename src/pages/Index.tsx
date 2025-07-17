@@ -9,6 +9,7 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import { Button } from '@/components/ui/button';
 import { ArrowUp } from 'lucide-react';
+import ExperienceSection from '@/components/ExperienceSection';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -80,6 +81,9 @@ const Index = () => {
           <SkillsSection />
         </section>
         
+        <section id='experience'>
+          <ExperienceSection />
+        </section>
         <section id="projects">
           <ProjectsSection />
         </section>
