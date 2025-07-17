@@ -248,9 +248,8 @@ const HeroSection = () => {
             </h2>
           </div>
 
-          <p className="text-xl text-muted-foreground max-w-lg leading-[1.8] font-light">
-            Crafting cinematic stories through expert video editing. Specializing in commercials,
-            digital content, and brand narratives that captivate audiences worldwide.
+          <p className="text-l text-muted-foreground max-w-lg leading-[1.8] font-light">
+          Crafting cinematic stories through expert video editing- from TV commercials to web series and documentaries, with a focus on creative storytelling and seamless transitions.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 pt-6">
@@ -287,15 +286,15 @@ const HeroSection = () => {
         </div>
 
         {/* Image */}
-        <div ref={imageRef} className="relative">
-          <div className="relative w-full max-w-lg mx-auto mt-32">
+        <div ref={imageRef} className="relative pt-0">
+          <div className="relative w-full max-w-lg mx-auto mt-24">
             <div className="absolute inset-0 bg-gradient-to-r from-primary via-neon-purple to-neon-magenta rounded-2xl blur-xl opacity-30 animate-pulse"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-neon-magenta/20 rounded-2xl animate-spin" style={{ animationDuration: '20s' }}></div>
+            <div className=" absolute inset-0 bg-gradient-to-r from-primary/20 to-neon-magenta/20 rounded-2xl animate-spin" style={{ animationDuration: '20s' }}></div>
 
             <img
               src="/bernesh.jpg"
               alt="Bernesh - Professional Video Editor"
-              className="relative w-full h-[600px] object-cover rounded-2xl border border-primary/20 shadow-2xl"
+              className="relative w-full  h-[600px] object-cover rounded-2xl border border-primary/20 shadow-2xl"
             />
 
             <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary/20 rounded-full blur-2xl animate-pulse"></div>
