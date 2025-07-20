@@ -122,7 +122,7 @@ const HeroSection = () => {
           duration: 1.2,
           stagger: 0.2,
           ease: "power3.out",
-          delay: 3
+          delay: 2
         }
       );
 

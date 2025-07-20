@@ -268,8 +268,7 @@ const ServicesSection = () => {
                 
                 {/* CTA with arrow */}
                 <div className="flex items-center text-primary font-medium group-hover:translate-x-2 transition-transform duration-300">
-                  <span className="mr-2">Learn More</span>
-                  <ArrowRight className="w-4 h-4" />
+                
                 </div>
               </div>
 
