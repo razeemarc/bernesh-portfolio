@@ -210,34 +210,78 @@ const ProjectsSection = () => {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
           onClick={handleModalBackdropClick}
         >
-          <div className="relative w-full max-w-4xl mx-4 bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                {selectedVideo.title}
-              </h3>
+          {/* Check if it's a reels video for vertical layout */}
+          {filteredProjects.find(p => p.id === selectedVideo.id)?.category === 'reels' ? (
+            // Reels Modal (Vertical/Mobile Style)
+            <div className="relative w-full max-w-sm mx-4 h-[80vh] bg-black rounded-3xl overflow-hidden shadow-2xl border-4 border-gray-800">
+              {/* Close Button for Reels */}
               <Button
                 onClick={handleCloseModal}
                 variant="outline"
                 size="sm"
-                className="rounded-full w-8 h-8 p-0"
+                className="absolute top-4 right-4 z-10 rounded-full w-8 h-8 p-0 bg-black/50 border-white/30 text-white hover:bg-black/70"
               >
                 <X className="w-4 h-4" />
               </Button>
+              
+              {/* Reels Video Container */}
+              <div className="relative w-full h-full">
+                <iframe
+                  className="absolute inset-0 w-full h-full object-cover"
+                  src={selectedVideo.videoUrl}
+                  title={selectedVideo.title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+              
+              {/* Reels Info Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                <h3 className="text-white font-semibold text-sm mb-1">
+                  {selectedVideo.title}
+                </h3>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs bg-pink-500 text-white px-2 py-1 rounded-full font-medium">
+                    REEL
+                  </span>
+                  <span className="text-white/80 text-xs">
+                    {filteredProjects.find(p => p.id === selectedVideo.id)?.description}
+                  </span>
+                </div>
+              </div>
             </div>
-            
-            {/* Video Container */}
-            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-              <iframe
-                className="absolute inset-0 w-full h-full"
-                src={selectedVideo.videoUrl}
-                title={selectedVideo.title}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
+          ) : (
+            // Regular Modal (Horizontal/Desktop Style)
+            <div className="relative w-full max-w-4xl mx-4 bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
+              {/* Modal Header */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  {selectedVideo.title}
+                </h3>
+                <Button
+                  onClick={handleCloseModal}
+                  variant="outline"
+                  size="sm"
+                  className="rounded-full w-8 h-8 p-0"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+              
+              {/* Video Container */}
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src={selectedVideo.videoUrl}
+                  title={selectedVideo.title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
     </>
