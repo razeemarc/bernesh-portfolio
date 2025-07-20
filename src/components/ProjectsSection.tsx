@@ -2,12 +2,15 @@ import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
+import { X } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsSection = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [playingVideoId, setPlayingVideoId] = useState<number | null>(null);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState<{id: number, title: string, videoUrl: string} | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
@@ -19,6 +22,7 @@ const ProjectsSection = () => {
     { id: 'reels', label: 'Reels' },
     { id: 'corporate', label: 'Corporate' }
   ];
+  
   const videos = [
     {
       id: "NPlTdIcD40w",
@@ -30,12 +34,13 @@ const ProjectsSection = () => {
     },
     // Add more videos as needed
   ];
+  
   const projects = [
     {
       id: 1,
       title: "Nike Brand Commercial",
       category: "commercials",
-      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w",
+      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w?autoplay=1&mute=1",
       image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=400&fit=crop",
       description: "High-energy commercial showcasing athletic performance"
     },
@@ -43,7 +48,7 @@ const ProjectsSection = () => {
       id: 2,
       title: "Tech Product Launch",
       category: "youtube",
-      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w",
+      videoUrl: "https://www.youtube.com/embed/KzccxqWoAqo?autoplay=1&mute=1",
       image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=400&fit=crop",
       description: "Product demonstration and feature highlights"
     },
@@ -51,7 +56,7 @@ const ProjectsSection = () => {
       id: 3,
       title: "Instagram Fitness Reel",
       category: "reels",
-      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w",
+      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w?autoplay=1&mute=1",
       image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
       description: "Short-form content for social media engagement"
     },
@@ -59,7 +64,7 @@ const ProjectsSection = () => {
       id: 4,
       title: "Corporate Training Video",
       category: "corporate",
-      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w",
+      videoUrl: "https://www.youtube.com/embed/KzccxqWoAqo?autoplay=1&mute=1",
       image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop",
       description: "Professional training content for enterprise"
     },
@@ -67,7 +72,7 @@ const ProjectsSection = () => {
       id: 5,
       title: "Food Brand Commercial",
       category: "commercials",
-      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w",
+      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w?autoplay=1&mute=1",
       image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=400&fit=crop",
       description: "Appetizing food photography and motion graphics"
     },
@@ -75,7 +80,7 @@ const ProjectsSection = () => {
       id: 6,
       title: "Gaming Channel Intro",
       category: "youtube",
-      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w",
+      videoUrl: "https://www.youtube.com/embed/KzccxqWoAqo?autoplay=1&mute=1",
       image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=400&fit=crop",
       description: "Dynamic intro sequence with motion graphics"
     }
@@ -106,64 +111,72 @@ const ProjectsSection = () => {
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
-    setPlayingVideoId(null); // reset playing video when changing tabs
+    setPlayingVideoId(null);
   };
 
-  const handlePlayVideo = (projectId: number) => {
-    setPlayingVideoId(projectId);
+  const handlePlayVideo = (project: typeof projects[0]) => {
+    setSelectedVideo({
+      id: project.id,
+      title: project.title,
+      videoUrl: project.videoUrl
+    });
+    setShowVideoModal(true);
+    setPlayingVideoId(project.id);
+  };
+
+  const handleCloseModal = () => {
+    setShowVideoModal(false);
+    setSelectedVideo(null);
+    setPlayingVideoId(null);
+  };
+
+  // Close modal when clicking outside
+  const handleModalBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      handleCloseModal();
+    }
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-card">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl lg:text-5xl font-playfair font-bold text-center mb-4">
-          Featured <span className="gradient-text">Projects</span>
-        </h2>
-        <p className="text-xl text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-          A showcase of my recent work across different platforms and industries
-        </p>
+    <>
+      <section ref={sectionRef} className="py-20 bg-card">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl lg:text-5xl font-playfair font-bold text-center mb-4">
+            Featured <span className="gradient-text">Projects</span>
+          </h2>
+          <p className="text-xl text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+            A showcase of my recent work across different platforms and industries
+          </p>
 
-        {/* Filter Tabs */}
-        <div ref={tabsRef} className="flex flex-wrap justify-center gap-4 mb-12">
-          {tabs.map((tab) => (
-            <Button
-              key={tab.id}
-              onClick={() => handleTabChange(tab.id)}
-              variant={activeTab === tab.id ? "default" : "outline"}
-              className={`px-6 py-3 rounded-full transition-all duration-300 ${
-                activeTab === tab.id
-                  ? 'bg-primary text-primary-foreground professional-glow'
-                  : 'border-border text-muted-foreground hover:border-primary hover:text-primary'
-              }`}
-            >
-              {tab.label}
-            </Button>
-          ))}
-        </div>
+          {/* Filter Tabs */}
+          <div ref={tabsRef} className="flex flex-wrap justify-center gap-4 mb-12">
+            {tabs.map((tab) => (
+              <Button
+                key={tab.id}
+                onClick={() => handleTabChange(tab.id)}
+                variant={activeTab === tab.id ? "default" : "outline"}
+                className={`px-6 py-3 rounded-full transition-all duration-300 ${
+                  activeTab === tab.id
+                    ? 'bg-primary text-primary-foreground professional-glow'
+                    : 'border-border text-muted-foreground hover:border-primary hover:text-primary'
+                }`}
+              >
+                {tab.label}
+              </Button>
+            ))}
+          </div>
 
-        {/* Projects Grid */}
-        <div ref={projectsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="group bg-secondary rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-300"
-            >
-              <div className="relative overflow-hidden">
-                {playingVideoId === project.id ? (
-                  <iframe
-                    width="100%"
-                    height="200"
-                    src={project.videoUrl}
-                    title={project.title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="rounded-t-2xl"
-                  />
-                ) : (
+          {/* Projects Grid */}
+          <div ref={projectsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project) => (
+              <div
+                key={project.id}
+                className="group bg-secondary rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-300"
+              >
+                <div className="relative overflow-hidden">
                   <div
                     className="relative cursor-pointer group"
-                    onClick={() => handlePlayVideo(project.id)}
+                    onClick={() => handlePlayVideo(project)}
                   >
                     <img
                       src={project.image}
@@ -176,21 +189,58 @@ const ProjectsSection = () => {
                       </Button>
                     </div>
                   </div>
-                )}
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Video Modal */}
+      {showVideoModal && selectedVideo && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={handleModalBackdropClick}
+        >
+          <div className="relative w-full max-w-4xl mx-4 bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {selectedVideo.title}
+              </h3>
+              <Button
+                onClick={handleCloseModal}
+                variant="outline"
+                size="sm"
+                className="rounded-full w-8 h-8 p-0"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            
+            {/* Video Container */}
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src={selectedVideo.videoUrl}
+                title={selectedVideo.title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
