@@ -60,9 +60,7 @@ const Index = () => {
               <a href="#projects" className="text-muted-foreground hover:text-primary transition-colors duration-300">Projects</a>
               <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors duration-300">Contact</a>
             </div>
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold professional-glow">
-              Hire Me
-            </Button>
+           
           </div>
         </div>
       </nav>

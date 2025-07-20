@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -8,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsSection = () => {
   const [activeTab, setActiveTab] = useState('all');
+  const [playingVideoId, setPlayingVideoId] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
@@ -19,12 +19,23 @@ const ProjectsSection = () => {
     { id: 'reels', label: 'Reels' },
     { id: 'corporate', label: 'Corporate' }
   ];
-
+  const videos = [
+    {
+      id: "NPlTdIcD40w",
+      title: "Short Video 1",
+    },
+    {
+      id: "KzccxqWoAqo",
+      title: "Short Video 2",
+    },
+    // Add more videos as needed
+  ];
   const projects = [
     {
       id: 1,
       title: "Nike Brand Commercial",
       category: "commercials",
+      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w",
       image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=400&fit=crop",
       description: "High-energy commercial showcasing athletic performance"
     },
@@ -32,6 +43,7 @@ const ProjectsSection = () => {
       id: 2,
       title: "Tech Product Launch",
       category: "youtube",
+      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w",
       image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=400&fit=crop",
       description: "Product demonstration and feature highlights"
     },
@@ -39,6 +51,7 @@ const ProjectsSection = () => {
       id: 3,
       title: "Instagram Fitness Reel",
       category: "reels",
+      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w",
       image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
       description: "Short-form content for social media engagement"
     },
@@ -46,6 +59,7 @@ const ProjectsSection = () => {
       id: 4,
       title: "Corporate Training Video",
       category: "corporate",
+      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w",
       image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop",
       description: "Professional training content for enterprise"
     },
@@ -53,6 +67,7 @@ const ProjectsSection = () => {
       id: 5,
       title: "Food Brand Commercial",
       category: "commercials",
+      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w",
       image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=400&fit=crop",
       description: "Appetizing food photography and motion graphics"
     },
@@ -60,18 +75,18 @@ const ProjectsSection = () => {
       id: 6,
       title: "Gaming Channel Intro",
       category: "youtube",
+      videoUrl: "https://www.youtube.com/embed/NPlTdIcD40w",
       image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=400&fit=crop",
       description: "Dynamic intro sequence with motion graphics"
     }
   ];
 
-  const filteredProjects = activeTab === 'all' 
-    ? projects 
+  const filteredProjects = activeTab === 'all'
+    ? projects
     : projects.filter(project => project.category === activeTab);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate project cards when filter changes
       gsap.fromTo(
         projectsRef.current?.children || [],
         { opacity: 0, y: 50, scale: 0.9 },
@@ -91,6 +106,11 @@ const ProjectsSection = () => {
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
+    setPlayingVideoId(null); // reset playing video when changing tabs
+  };
+
+  const handlePlayVideo = (projectId: number) => {
+    setPlayingVideoId(projectId);
   };
 
   return (
@@ -126,20 +146,37 @@ const ProjectsSection = () => {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="group bg-secondary rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 cursor-pointer"
+              className="group bg-secondary rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-300"
             >
               <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-all duration-300"></div>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Button className="bg-primary/90 hover:bg-primary text-primary-foreground font-semibold">
-                    Watch Project
-                  </Button>
-                </div>
+                {playingVideoId === project.id ? (
+                  <iframe
+                    width="100%"
+                    height="200"
+                    src={project.videoUrl}
+                    title={project.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="rounded-t-2xl"
+                  />
+                ) : (
+                  <div
+                    className="relative cursor-pointer group"
+                    onClick={() => handlePlayVideo(project.id)}
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                      <Button className="bg-primary text-primary-foreground hover:bg-primary/80">
+                        ▶ Play Video
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
