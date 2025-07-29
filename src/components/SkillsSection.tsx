@@ -54,17 +54,7 @@ const SkillsSection = () => {
         "Export optimization for different platforms"
       ]
     },
-    {
-      title: "Creative Design",
-      icon: <Palette className="w-5 h-5" />,
-      color: "from-neon-magenta to-neon-purple",
-      skills: [
-        "Graphic design in Adobe Photoshop",
-        "Logo design in Adobe Illustrator",
-        "Thumbnail & poster creation",
-        "Visual storytelling & composition"
-      ]
-    },
+   
     {
       title: "Technical Expertise",
       icon: <Code className="w-5 h-5" />,
@@ -149,47 +139,47 @@ const SkillsSection = () => {
               ))}
             </div>
 
-            {/* Skill Categories */}
-            <div className="mt-16">
-              <div className="mb-8 text-center">
-                <h3 className="text-2xl font-bold mb-2">Professional Skills</h3>
-                <p className="text-muted-foreground">
-                  Comprehensive expertise across all aspects of video production
-                </p>
-              </div>
-              <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-                {skillCategories.map((category, index) => (
-                  <div
-                    key={index}
-                    className="glass-morphism border-primary/20 rounded-2xl p-6 hover:border-primary/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
-                  >
-                    <div className="flex items-center gap-3 mb-5">
-                      <div
-                        className={`p-2 bg-gradient-to-r ${category.color} rounded-lg group-hover:scale-110 transition-transform duration-300`}
-                      >
-                        {category.icon}
-                      </div>
-                      <h4 className="text-xl font-semibold">
-                        {category.title}
-                      </h4>
-                    </div>
-                    <ul className="space-y-3">
-                      {category.skills.map((skill, skillIndex) => (
-                        <li
-                          key={skillIndex}
-                          className="flex items-start gap-3 group/item"
-                        >
-                          <div className="w-2 h-2 bg-gradient-to-r from-primary to-neon-magenta rounded-full mt-2 group-hover/item:scale-125 transition-transform duration-200"></div>
-                          <span className="text-muted-foreground leading-relaxed group-hover/item:text-foreground transition-colors duration-200">
-                            {skill}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
+           {/* Skill Categories */}
+<div className="mt-16">
+  <div className="mb-8 text-center">
+    <h3 className="text-2xl font-bold mb-2">Professional Skills</h3>
+    <p className="text-muted-foreground">
+      Comprehensive expertise across all aspects of video production
+    </p>
+  </div>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    {skillCategories.map((category, index) => (
+      <div
+        key={index}
+        className="glass-morphism border-primary/20 rounded-2xl p-6 hover:border-primary/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+      >
+        <div className="flex items-center gap-3 mb-5">
+          <div
+            className={`p-2 bg-gradient-to-r ${category.color} rounded-lg group-hover:scale-110 transition-transform duration-300`}
+          >
+            {category.icon}
+          </div>
+          <h4 className="text-xl font-semibold">
+            {category.title}
+          </h4>
+        </div>
+        <ul className="space-y-3">
+          {category.skills.map((skill, skillIndex) => (
+            <li
+              key={skillIndex}
+              className="flex items-start gap-3 group/item"
+            >
+              <div className="w-2 h-2 bg-gradient-to-r from-primary to-neon-magenta rounded-full mt-2 group-hover/item:scale-125 transition-transform duration-200"></div>
+              <span className="text-muted-foreground leading-relaxed group-hover/item:text-foreground transition-colors duration-200">
+                {skill}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</div>
 
             {/* Additional Info */}
             <div className="glass-morphism border-primary/20 rounded-2xl p-6 mt-8 max-w-4xl mx-auto">

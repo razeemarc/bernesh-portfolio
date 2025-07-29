@@ -43,13 +43,7 @@ const ServicesSection = () => {
       gradient: "from-neon-teal to-neon-blue",
       delay: 0.3
     },
-    {
-      title: "Content Repurposing",
-      description: "Maximize your content's reach by strategically adapting it for multiple platforms with format-specific optimizations.",
-      icon: "♻️",
-      gradient: "from-neon-blue to-neon-magenta",
-      delay: 0.4
-    },
+   
     {
       title: "Motion Graphics Design",
       description: "Custom animated graphics, lower thirds, and visual effects that elevate your content with professional polish.",
