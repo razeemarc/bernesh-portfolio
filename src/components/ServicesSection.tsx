@@ -261,15 +261,16 @@ const ServicesSection = () => {
 
               {/* Icon section */}
               <div className="relative z-10 mb-8">
-                <div className="mb-4  ">
-                  {service.icon}
-                </div>
+               <div className="mb-4 flex justify-center">
+  {service.icon}
+</div>
+
                
               </div>
 
               {/* Content */}
-              <div className="relative z-10">
-                <h3 className="text-2xl font-semibold mb-4 text-foreground group-hover:text-primary transition-colors duration-300">
+              <div className="relative z-10 ">
+                <h3 className="text-2xl font-semibold mb-4 text-foreground group-hover:text-primary transition-colors duration-300  flex justify-center">
                   {service.title}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-6 group-hover:text-muted-foreground/80 transition-colors duration-300">
