@@ -273,7 +273,7 @@ const ServicesSection = () => {
                 <h3 className="text-2xl font-semibold mb-4 text-foreground group-hover:text-primary transition-colors duration-300  flex justify-center">
                   {service.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed mb-6 group-hover:text-muted-foreground/80 transition-colors duration-300">
+                <p className="text-muted-foreground leading-relaxed mb-6 group-hover:text-muted-foreground/80 transition-colors duration-300 justify-center">
                   {service.description}
                 </p>
               </div>
