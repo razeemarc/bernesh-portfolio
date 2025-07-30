@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Linkedin, Youtube } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,16 +105,35 @@ const ContactSection = () => {
               <div>
                 <h4 className="text-lg font-medium mb-4 text-foreground">Follow My Work</h4>
                 <div className="flex space-x-4">
-                  {['Instagram', 'LinkedIn', 'YouTube', 'Vimeo'].map((social) => (
-                    <div
-                      key={social}
-                      className="w-12 h-12 bg-secondary hover:bg-primary/20 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110"
-                    >
-                      <span className="text-primary text-sm font-medium">
-                        {social.slice(0, 2)}
-                      </span>
-                    </div>
-                  ))}
+                <div className="flex space-x-4">
+  <a
+    href="https://www.instagram.com/yourusername"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-12 h-12 bg-secondary hover:bg-primary/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+  >
+    <Instagram className="w-5 h-5 text-primary" />
+  </a>
+
+  <a
+    href="https://www.linkedin.com/in/yourusername"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-12 h-12 bg-secondary hover:bg-primary/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+  >
+    <Linkedin className="w-5 h-5 text-primary" />
+  </a>
+
+  <a
+    href="https://www.youtube.com/@yourusername"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-12 h-12 bg-secondary hover:bg-primary/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+  >
+    <Youtube className="w-5 h-5 text-primary" />
+  </a>
+</div>
+
                 </div>
               </div>
             </div>
