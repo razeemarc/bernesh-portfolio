@@ -245,7 +245,10 @@ const ServicesSection = () => {
         </div>
 
         {/* Services grid */}
-        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div 
+          ref={cardsRef} 
+          className="grid md:grid-cols-2 lg:grid-cols-6 gap-8 [&>*:nth-child(4)]:lg:col-start-2 [&>*:nth-child(4)]:lg:col-span-2 [&>*:nth-child(5)]:lg:col-start-4 [&>*:nth-child(5)]:lg:col-span-2 [&>*:nth-child(1)]:lg:col-span-2 [&>*:nth-child(2)]:lg:col-span-2 [&>*:nth-child(3)]:lg:col-span-2"
+        >
           {services.map((service, index) => (
             <div
               key={index}
