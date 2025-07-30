@@ -261,12 +261,10 @@ const ServicesSection = () => {
 
               {/* Icon section */}
               <div className="relative z-10 mb-8">
-                <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="mb-4  ">
                   {service.icon}
                 </div>
-                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center group-hover:bg-primary/30 transition-colors duration-300">
-                  <Zap className="w-6 h-6 text-primary" />
-                </div>
+               
               </div>
 
               {/* Content */}
