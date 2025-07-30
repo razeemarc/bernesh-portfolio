@@ -105,9 +105,8 @@ const ContactSection = () => {
               <div>
                 <h4 className="text-lg font-medium mb-4 text-foreground">Follow My Work</h4>
                 <div className="flex space-x-4">
-                <div className="flex space-x-4">
   <a
-    href="https://www.instagram.com/yourusername"
+    href="https://www.instagram.com/_ig_bernesh_avm"
     target="_blank"
     rel="noopener noreferrer"
     className="w-12 h-12 bg-secondary hover:bg-primary/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -116,7 +115,7 @@ const ContactSection = () => {
   </a>
 
   <a
-    href="https://www.linkedin.com/in/yourusername"
+    href="https://www.linkedin.com/in"
     target="_blank"
     rel="noopener noreferrer"
     className="w-12 h-12 bg-secondary hover:bg-primary/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -125,7 +124,7 @@ const ContactSection = () => {
   </a>
 
   <a
-    href="https://www.youtube.com/@yourusername"
+    href="https://www.youtube.com/@Bernesh2003"
     target="_blank"
     rel="noopener noreferrer"
     className="w-12 h-12 bg-secondary hover:bg-primary/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -133,8 +132,6 @@ const ContactSection = () => {
     <Youtube className="w-5 h-5 text-primary" />
   </a>
 </div>
-
-                </div>
               </div>
             </div>
 
