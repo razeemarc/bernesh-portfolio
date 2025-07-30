@@ -144,7 +144,7 @@ const ContactSection = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocused('name')}
                   onBlur={() => setFocused(null)}
-                  className="bg-secondary border-border focus:border-primary text-foreground h-14 px-4 pt-6"
+                  className="bg-secondary  text-foreground h-14 px-4 pt-6"
                   placeholder=" "
                 />
                 <label className={`absolute left-4 transition-all duration-300 pointer-events-none ${
@@ -164,7 +164,7 @@ const ContactSection = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocused('email')}
                   onBlur={() => setFocused(null)}
-                  className="bg-secondary border-border focus:border-primary text-foreground h-14 px-4 pt-6"
+                  className="bg-secondary  text-foreground h-14 px-4 pt-6"
                   placeholder=" "
                 />
                 <label className={`absolute left-4 transition-all duration-300 pointer-events-none ${
@@ -183,7 +183,7 @@ const ContactSection = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocused('message')}
                   onBlur={() => setFocused(null)}
-                  className="bg-secondary border-border focus:border-primary text-foreground min-h-32 px-4 pt-6 resize-none"
+                  className="bg-secondary  text-foreground min-h-32 px-4 pt-6 resize-none"
                   placeholder=" "
                 />
                 <label className={`absolute left-4 transition-all duration-300 pointer-events-none ${
