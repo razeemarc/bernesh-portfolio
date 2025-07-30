@@ -1,10 +1,10 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -73,7 +73,7 @@ const ContactSection = () => {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                      <span className="text-primary">📧</span>
+                      <Mail className="w-6 h-6 text-primary" />
                     </div>
                     <div>
                       <p className="text-muted-foreground">Email</p>
@@ -82,7 +82,7 @@ const ContactSection = () => {
                   </div>
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-professional-accent-teal/20 rounded-full flex items-center justify-center">
-                      <span className="text-professional-accent-teal">📱</span>
+                      <Phone className="w-6 h-6 text-professional-accent-teal" />
                     </div>
                     <div>
                       <p className="text-muted-foreground">Phone</p>
@@ -91,7 +91,7 @@ const ContactSection = () => {
                   </div>
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-professional-accent-emerald/20 rounded-full flex items-center justify-center">
-                      <span className="text-professional-accent-emerald">📍</span>
+                      <MapPin className="w-6 h-6 text-professional-accent-emerald" />
                     </div>
                     <div>
                       <p className="text-muted-foreground">Location</p>
@@ -105,7 +105,7 @@ const ContactSection = () => {
               <div>
                 <h4 className="text-lg font-medium mb-4 text-foreground">Follow My Work</h4>
                 <div className="flex space-x-4">
-                  {['Instagram', 'LinkedIn', 'YouTube', 'Vimeo'].map((social, index) => (
+                  {['Instagram', 'LinkedIn', 'YouTube', 'Vimeo'].map((social) => (
                     <div
                       key={social}
                       className="w-12 h-12 bg-secondary hover:bg-primary/20 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110"
