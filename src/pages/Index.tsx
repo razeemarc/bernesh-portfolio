@@ -147,19 +147,19 @@ const Index = () => {
           </div>
           
           <div className="border-t border-border mt-8 pt-8 text-center">
-          <p className="text-muted-foreground">
-  © 2025 Bernesh. All rights reserved. | Developed by{' '}
-  <a
-    href="https://razeema.vercel.app/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-primary  hover:text-primary/80 cursor-pointer"
-  >
-    Razeema R C
-  </a>
-</p>
+  <p className="text-muted-foreground text-sm sm:text-base">
+    © 2025 Bernesh. All rights reserved. | Developed by{' '}
+    <a
+      href="https://razeema.vercel.app/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-primary hover:text-primary/80 cursor-pointer"
+    >
+      Razeema R C
+    </a>
+  </p>
+</div>
 
-          </div>
         </div>
       </footer>
 
