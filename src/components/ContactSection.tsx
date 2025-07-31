@@ -143,7 +143,7 @@ const ContactSection = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   onFocus={() => setFocused('name')}
-                  onBlur={() => setFocused(null)}
+                 
                   className="bg-secondary  text-foreground h-14 px-4 pt-6"
                   placeholder=" "
                 />
@@ -163,7 +163,7 @@ const ContactSection = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   onFocus={() => setFocused('email')}
-                  onBlur={() => setFocused(null)}
+                 
                   className="bg-secondary  text-foreground h-14 px-4 pt-6"
                   placeholder=" "
                 />
@@ -182,7 +182,7 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   onFocus={() => setFocused('message')}
-                  onBlur={() => setFocused(null)}
+                 
                   className="bg-secondary  text-foreground min-h-32 px-4 pt-6 resize-none"
                   placeholder=" "
                 />
